@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Path to 50 Doors | InvestingSection8</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#081325;
+    --panel:#0e1f3a;
+    --panel-2:#132847;
+    --line:#244268;
+    --ink:#eaf2fb;
+    --muted:#93a8c4;
+    --dim:#5f78a0;
+    --navy:#1d4f8c;
+    --sky:#5cb8ef;
+    --sky-soft:#79c6f2;
+    --teal:#52cdb6;
+    --warn:#e08a5a;
+    --shadow:0 24px 60px -20px rgba(0,0,0,.65);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:
+      radial-gradient(1200px 600px at 80% -10%, rgba(92,184,239,.10), transparent 60%),
+      radial-gradient(900px 500px at -10% 110%, rgba(29,79,140,.18), transparent 55%),
+      var(--bg);
+    color:var(--ink);
+    font-family:"DM Sans",sans-serif;line-height:1.5;min-height:100vh;
+    padding:clamp(16px,3vw,44px);-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1180px;margin:0 auto}
+
+  /* brand bar */
+  .brand{display:flex;align-items:center;gap:12px;margin-bottom:34px}
+  .brand .mark{
+    font-family:"DM Sans",sans-serif;font-weight:700;letter-spacing:.02em;font-size:17px;color:var(--ink);
+    display:flex;align-items:center;gap:9px;
+  }
+  .brand .dot{width:11px;height:11px;border-radius:3px;background:var(--sky);box-shadow:0 0 16px var(--sky)}
+  .brand .tag{font-family:"Space Mono",monospace;font-size:11px;color:var(--muted);letter-spacing:.14em;
+    text-transform:uppercase;padding-left:14px;margin-left:4px;border-left:1px solid var(--line)}
+
+  header{margin-bottom:18px;position:relative}
+  .eyebrow{font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.26em;text-transform:uppercase;
+    color:var(--sky);margin-bottom:14px}
+  h1{font-family:"Fraunces",serif;font-weight:500;font-size:clamp(38px,6.5vw,76px);
+    line-height:.96;letter-spacing:-.02em}
+  h1 .num{color:var(--sky);font-style:italic}
+  .sub{color:var(--muted);max-width:600px;margin-top:16px;font-size:15.5px}
+  .disclaimer{font-family:"Space Mono",monospace;font-size:11px;color:var(--dim);margin-top:12px}
+
+  /* story band */
+  .story{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:stretch;gap:14px;margin:30px 0 8px}
+  .story-step{background:linear-gradient(180deg,var(--panel-2),var(--panel));
+    border:1px solid var(--line);border-radius:16px;padding:22px 20px}
+  .story-n{font-family:"Space Mono",monospace;font-size:12px;color:var(--sky);letter-spacing:.2em;margin-bottom:10px}
+  .story-t{font-family:"Fraunces",serif;font-size:19px;font-weight:500;line-height:1.1;margin-bottom:8px}
+  .story-d{font-size:13px;color:var(--muted);line-height:1.5}
+  .story-arrow{display:flex;align-items:center;color:var(--navy);font-size:22px}
+
+  /* result cards */
+  .results{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:26px 0 22px}
+  .card{background:linear-gradient(180deg,var(--panel-2),var(--panel));
+    border:1px solid var(--line);border-radius:16px;padding:20px;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+  .card::before{content:"";position:absolute;inset:0 0 auto 0;height:2px;
+    background:linear-gradient(90deg,transparent,var(--sky),transparent);opacity:.6}
+  .card .label{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--muted)}
+  .card .big{font-family:"Fraunces",serif;font-size:clamp(30px,4.4vw,46px);font-weight:500;
+    line-height:1;margin-top:12px;letter-spacing:-.01em}
+  .card .big.sky{color:var(--sky)}
+  .card .big.teal{color:var(--teal)}
+  .card .foot{font-size:12px;color:var(--dim);margin-top:8px;font-family:"Space Mono",monospace}
+
+  .grid{display:grid;grid-template-columns:380px 1fr;gap:22px;align-items:start}
+
+  .controls{background:var(--panel);border:1px solid var(--line);border-radius:18px;
+    padding:8px 22px 22px;box-shadow:var(--shadow)}
+  .group-title{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--sky-soft);padding:20px 0 4px;border-bottom:1px solid var(--line);margin-bottom:14px}
+  .ctrl{margin-bottom:18px}
+  .ctrl .row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+  .ctrl label{font-size:13.5px;color:var(--ink)}
+  .ctrl .val{font-family:"Space Mono",monospace;font-size:14px;color:var(--sky);font-weight:700}
+  .ctrl .hint{font-size:11px;color:var(--dim);margin-top:6px;line-height:1.4}
+  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:4px;
+    background:linear-gradient(90deg,var(--sky) var(--pct,40%),#1b3252 var(--pct,40%));outline:none;cursor:pointer}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;
+    background:var(--ink);border:3px solid var(--sky);cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.5);transition:transform .12s}
+  input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.18)}
+  input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--ink);border:3px solid var(--sky);cursor:pointer}
+
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:var(--shadow)}
+  .panel h3{font-family:"Fraunces",serif;font-weight:500;font-size:22px;margin-bottom:4px}
+  .panel .ph-sub{color:var(--muted);font-size:13px;margin-bottom:18px}
+
+  .deal-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px}
+  .stat{background:var(--panel-2);border:1px solid var(--line);border-radius:12px;padding:14px}
+  .stat .s-lab{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .stat .s-val{font-family:"Space Mono",monospace;font-size:20px;font-weight:700;margin-top:6px;color:var(--ink)}
+  .stat .s-note{font-size:10.5px;color:var(--dim);margin-top:4px}
+
+  .assume{font-family:"Space Mono",monospace;font-size:10.5px;color:var(--dim);line-height:1.6;
+    background:var(--panel-2);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:24px}
+  .assume b{color:var(--muted);font-weight:400}
+
+  .chart-box{background:var(--panel-2);border:1px solid var(--line);border-radius:14px;padding:18px 14px 10px}
+  svg{display:block;width:100%;height:auto}
+  .axis-txt{font-family:"Space Mono",monospace;font-size:10px;fill:var(--dim)}
+  .grid-line{stroke:#1a3252;stroke-width:1}
+
+  .miles{margin-top:24px;width:100%;border-collapse:collapse}
+  .miles th{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--muted);text-align:right;padding:10px 8px;border-bottom:1px solid var(--line);font-weight:400}
+  .miles th:first-child{text-align:left}
+  .miles td{font-family:"Space Mono",monospace;font-size:13px;padding:11px 8px;text-align:right;
+    border-bottom:1px solid #15294a;color:var(--ink)}
+  .miles td:first-child{text-align:left;color:var(--sky-soft);font-weight:700}
+  .miles tr:last-child td{border-bottom:none}
+  .miles tr.peak td{color:var(--sky)}
+
+  /* CTA */
+  .cta{margin-top:30px;text-align:center;padding:clamp(36px,6vw,68px) 24px;
+    background:radial-gradient(700px 320px at 50% -40%, rgba(92,184,239,.18), transparent 70%),
+      linear-gradient(180deg,var(--panel-2),var(--panel));
+    border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .cta::before{content:"";position:absolute;inset:0 0 auto 0;height:2px;
+    background:linear-gradient(90deg,transparent,var(--sky),transparent)}
+  .cta-eyebrow{font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--sky);margin-bottom:14px}
+  .cta-h{font-family:"Fraunces",serif;font-weight:500;font-size:clamp(30px,5vw,52px);line-height:1.02;letter-spacing:-.02em}
+  .cta-h em{color:var(--sky);font-style:italic}
+  .cta-p{color:var(--muted);max-width:580px;margin:18px auto 0;font-size:15.5px}
+  .cta-btn{display:inline-block;margin-top:30px;padding:17px 40px;border-radius:999px;
+    background:linear-gradient(180deg,var(--sky),var(--navy));color:#04111f;text-decoration:none;
+    font-family:"DM Sans",sans-serif;font-weight:700;font-size:16px;
+    box-shadow:0 14px 34px -10px rgba(92,184,239,.6);transition:transform .15s,box-shadow .15s}
+  .cta-btn:hover{transform:translateY(-2px);box-shadow:0 20px 44px -10px rgba(92,184,239,.8)}
+  .cta-note{font-family:"Space Mono",monospace;font-size:12px;color:var(--dim);margin-top:16px}
+
+  footer{margin-top:30px;color:var(--dim);font-family:"Space Mono",monospace;font-size:11px;text-align:center;line-height:1.7}
+
+  @media(max-width:920px){
+    .results{grid-template-columns:repeat(2,1fr)}
+    .grid{grid-template-columns:1fr}
+    .story{grid-template-columns:1fr}
+    .story-arrow{display:none}
+  }
+  @media(max-width:520px){.deal-stats{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">
+    <div class="mark"><span class="dot"></span>InvestingSection8</div>
+    <div class="tag">with Joseph Khateri</div>
+  </div>
+
+  <header>
+    <div class="eyebrow">The real math of a rental portfolio</div>
+    <h1>It was never about how much you <span class="num">save</span>.</h1>
+    <p class="sub">Most people treat rentals like a savings account. Save for years. Buy one house. Save again. Buy another. It is the slowest path there is, and it quietly stops almost everyone before they build anything real.</p>
+    <p class="sub" style="margin-top:14px">The people who actually reach 50 doors are not saving harder or earning more. They buy at a discount and recycle the same dollars deal after deal. Your timeline is not set by your income. It is set by how good your deals are. Move the sliders and see it for yourself.</p>
+    <p class="disclaimer">Educational estimates only. Not financial, tax, or investment advice.</p>
+  </header>
+
+  <div class="story">
+    <div class="story-step">
+      <div class="story-n">01</div>
+      <div class="story-t">Buy at a discount</div>
+      <div class="story-d">Get a property worth far more after repairs than it costs you to buy and fix. That gap is the entire engine.</div>
+    </div>
+    <div class="story-arrow">&rarr;</div>
+    <div class="story-step">
+      <div class="story-n">02</div>
+      <div class="story-t">Fix it, rent it, refinance</div>
+      <div class="story-d">Renovate, place a Section 8 tenant, then refinance at the new higher value. The new loan hands most of your cash back to you.</div>
+    </div>
+    <div class="story-arrow">&rarr;</div>
+    <div class="story-step">
+      <div class="story-n">03</div>
+      <div class="story-t">Recycle and repeat</div>
+      <div class="story-d">Your money comes back. You buy the next one with the same dollars. The deeper the discount, the more comes back, the faster you grow.</div>
+    </div>
+  </div>
+
+  <div class="results">
+    <div class="card">
+      <div class="label">Time to 50 doors</div>
+      <div class="big sky" id="r-time">--</div>
+      <div class="foot" id="r-time-foot">--</div>
+    </div>
+    <div class="card">
+      <div class="label">Equity at 50 doors</div>
+      <div class="big" id="r-eqfin">--</div>
+      <div class="foot">the day you finish</div>
+    </div>
+    <div class="card">
+      <div class="label">Monthly cash flow</div>
+      <div class="big teal" id="r-cf">--</div>
+      <div class="foot">at 50 doors, passive</div>
+    </div>
+    <div class="card">
+      <div class="label">Equity, 20-yr hold</div>
+      <div class="big sky" id="r-payout">--</div>
+      <div class="foot" id="r-payout-foot">gross, before taxes</div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="controls">
+      <div class="group-title">Your starting point</div>
+      <div class="ctrl">
+        <div class="row"><label>Cash you start with</label><span class="val" id="v-reserve">$20k</span></div>
+        <input type="range" id="reserve" min="0" max="80000" step="2500" value="20000">
+      </div>
+      <div class="ctrl">
+        <div class="row"><label>Money you add each month</label><span class="val" id="v-monthly">$2k</span></div>
+        <input type="range" id="monthly" min="0" max="10000" step="250" value="2000">
+        <div class="hint">Drag this toward zero. Watch the finish line barely move. The recycled deals do the work, not your paycheck.</div>
+      </div>
+
+      <div class="group-title">Your deals (this is the lever)</div>
+      <div class="ctrl">
+        <div class="row"><label>Cash you put into each deal</label><span class="val" id="v-down">$15k</span></div>
+        <input type="range" id="down" min="8000" max="30000" step="1000" value="15000">
+        <div class="hint">Your money in on day one: down payment, rehab gap, and reserves. A lender covers the rest.</div>
+      </div>
+      <div class="ctrl">
+        <div class="row"><label>Cash left stuck after refinance</label><span class="val" id="v-left">$5k</span></div>
+        <input type="range" id="left" min="0" max="20000" step="1000" value="5000">
+        <div class="hint">The only money that does not come back. Buy at a deeper discount and this shrinks. This number decides your speed more than anything else.</div>
+      </div>
+      <div class="ctrl">
+        <div class="row"><label>Cash flow per door / month</label><span class="val" id="v-cf">$300</span></div>
+        <input type="range" id="cf" min="100" max="600" step="25" value="300">
+        <div class="hint">What you keep after the mortgage, management, vacancy, and repairs.</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>What one deal does to your money</h3>
+      <p class="ph-sub">The whole strategy in three numbers. You put cash in, the refinance gives most of it back, and only a small amount stays stuck. The smaller that stuck number, the faster your money rebuilds 50 doors.</p>
+      <div class="deal-stats">
+        <div class="stat">
+          <div class="s-lab">You put in</div>
+          <div class="s-val" id="d-in">--</div>
+          <div class="s-note">per deal, day one</div>
+        </div>
+        <div class="stat">
+          <div class="s-lab">You pull back out</div>
+          <div class="s-val" id="d-back">--</div>
+          <div class="s-note">at refinance</div>
+        </div>
+        <div class="stat">
+          <div class="s-lab">Stays stuck</div>
+          <div class="s-val" id="d-left">--</div>
+          <div class="s-note">the real cost of a door</div>
+        </div>
+      </div>
+      <div class="assume">
+        <b>Fixed assumptions, so you can focus on what matters:</b> average door worth ~$130k after repair &middot; refinance at 75% of value &middot; about 6 months per deal cycle &middot; up to 4 deals running at once &middot; 3% yearly appreciation &middot; 30-year loan at 7.5%.
+      </div>
+
+      <h3>Doors over time</h3>
+      <p class="ph-sub">Rented, income-producing doors. The line bends upward as your recycled cash and rent stack on top of each other.</p>
+      <div class="chart-box">
+        <svg id="chart" viewBox="0 0 720 300" preserveAspectRatio="xMidYMid meet"></svg>
+      </div>
+
+      <table class="miles">
+        <thead><tr><th>When</th><th>Doors</th><th>Equity</th><th>Cash flow/mo</th></tr></thead>
+        <tbody id="miles-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <section class="cta">
+    <div class="cta-eyebrow">You have seen the math</div>
+    <h2 class="cta-h">Now let us build <em>your</em> plan.</h2>
+    <p class="cta-p">The numbers above are the strategy in its simplest form. The real path, in your market, with real deals, is what our team maps with you on a free roadmap session. You walk away knowing your exact next move.</p>
+    <!-- TODO: confirm /emails is your booking URL — swap it if you have a dedicated call-booking page (e.g. Calendly) -->
+    <a class="cta-btn" href="https://investingsection8.com/emails" target="_blank" rel="noopener">Book your free roadmap session &rarr;</a>
+    <p class="cta-note">No pressure. Just a clear plan you can act on this month.</p>
+  </section>
+
+  <footer>
+    InvestingSection8 with Joseph Khateri &middot; Model recycles recovered cash and rent into the next deal.<br>
+    "20-yr hold" equity is gross, before ~7% selling costs and depreciation recapture / capital gains tax. A 1031 exchange can defer those.
+  </footer>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const fmtK = n => {
+  if (Math.abs(n) >= 1e6) return '$' + (n/1e6).toFixed(2).replace(/\.?0+$/,'') + 'M';
+  if (Math.abs(n) >= 1000) return '$' + Math.round(n/1000) + 'k';
+  return '$' + Math.round(n);
+};
+// fixed assumptions
+const VALUE = 130000, LTV = 0.75, RATE = 0.075;
+const LOAN = VALUE * LTV;        // 97,500 per door
+const CYCLE = 6, PARALLEL = 4, APPR = 0.03, TARGET = 50, CAP = 360;
+
+function amort(L, annual, m){
+  if (m <= 0) return L; const i = annual/12, n = 360;
+  if (m >= n) return 0;
+  return L * (Math.pow(1+i,n) - Math.pow(1+i,m)) / (Math.pow(1+i,n) - 1);
+}
+
+function readInputs(){
+  return {
+    reserve:+$('reserve').value,
+    monthly:+$('monthly').value,
+    down:+$('down').value,
+    left:+$('left').value,
+    cf:+$('cf').value,
+  };
+}
+
+function simulate(p){
+  const cashToStart = p.down;
+  const cashBack = p.down - p.left;       // recovered at refi
+  let cash = p.reserve, owned = 0, inFlight = [];
+  const acq = [], hist = [0]; let targetMonth = null;
+
+  for (let m = 1; m <= CAP; m++){
+    cash += p.monthly + owned * p.cf;
+    inFlight = inFlight.filter(done => {
+      if (done === m){ cash += cashBack; owned++; acq.push(m); return false; }
+      return true;
+    });
+    let g = 0;
+    while (cash >= cashToStart && inFlight.length < PARALLEL
+           && (owned + inFlight.length) < TARGET && g < 60){
+      cash -= cashToStart; inFlight.push(m + CYCLE); g++;
+    }
+    hist.push(owned);
+    if (owned >= TARGET && targetMonth === null) targetMonth = m;
+  }
+  return {cashToStart, cashBack, acq, hist, targetMonth, p};
+}
+
+function equityAt(sim, month){
+  let value = 0, debt = 0, doors = 0;
+  for (const a of sim.acq){
+    if (a <= month){
+      const yrs = (month - a)/12;
+      value += VALUE * Math.pow(1+APPR, yrs);
+      debt  += amort(LOAN, RATE, month - a);
+      doors++;
+    }
+  }
+  return {equity:value - debt, doors, cf:doors * sim.p.cf};
+}
+function matureEquity(years){
+  const v = VALUE * Math.pow(1+APPR, years) * TARGET;
+  const d = amort(LOAN, RATE, years*12) * TARGET;
+  return v - d;
+}
+
+function drawChart(sim){
+  const svg = $('chart'), W=720,H=300,pL=40,pR=16,pT=14,pB=28;
+  const reached = sim.targetMonth || sim.hist.length-1;
+  const maxM = Math.max(24, Math.min(sim.hist.length-1, reached+6));
+  const x = m => pL + (m/maxM)*(W-pL-pR);
+  const y = d => H-pB - (d/TARGET)*(H-pT-pB);
+  let grid='';
+  for (let d=0; d<=50; d+=10){
+    grid += `<line class="grid-line" x1="${pL}" y1="${y(d)}" x2="${W-pR}" y2="${y(d)}"/>`;
+    grid += `<text class="axis-txt" x="${pL-8}" y="${y(d)+3}" text-anchor="end">${d}</text>`;
+  }
+  let xt=''; const step = maxM>96?24:12;
+  for (let m=0; m<=maxM; m+=step){
+    xt += `<text class="axis-txt" x="${x(m)}" y="${H-8}" text-anchor="middle">yr ${(m/12).toFixed(0)}</text>`;
+  }
+  let line = `M ${x(0)} ${y(sim.hist[0])}`;
+  for (let m=1; m<=maxM; m++) line += ` L ${x(m)} ${y(sim.hist[m] ?? sim.hist[sim.hist.length-1])}`;
+  const area = `${line} L ${x(maxM)} ${y(0)} L ${x(0)} ${y(0)} Z`;
+  let marker='';
+  if (sim.targetMonth && sim.targetMonth<=maxM){
+    marker = `<line x1="${x(sim.targetMonth)}" y1="${pT}" x2="${x(sim.targetMonth)}" y2="${H-pB}" stroke="#5cb8ef" stroke-dasharray="4 4" stroke-width="1"/><circle cx="${x(sim.targetMonth)}" cy="${y(TARGET)}" r="5" fill="#5cb8ef"/>`;
+  }
+  svg.innerHTML = `<defs><linearGradient id="fill" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#5cb8ef" stop-opacity="0.34"/>
+    <stop offset="100%" stop-color="#5cb8ef" stop-opacity="0"/></linearGradient></defs>
+    ${grid}${xt}<path d="${area}" fill="url(#fill)"/>
+    <path d="${line}" fill="none" stroke="#5cb8ef" stroke-width="2.5" stroke-linejoin="round"/>${marker}`;
+}
+
+function update(){
+  const p = readInputs();
+  const setFill = (id,min,max)=>{const el=$(id);el.style.setProperty('--pct',((el.value-min)/(max-min))*100+'%')};
+  setFill('reserve',0,80000); setFill('monthly',0,10000); setFill('down',8000,30000); setFill('left',0,20000); setFill('cf',100,600);
+  $('v-reserve').textContent=fmtK(p.reserve); $('v-monthly').textContent=fmtK(p.monthly);
+  $('v-down').textContent=fmtK(p.down); $('v-left').textContent=fmtK(p.left); $('v-cf').textContent='$'+p.cf;
+
+  const sim = simulate(p);
+
+  $('d-in').textContent = fmtK(sim.cashToStart);
+  $('d-back').textContent = fmtK(sim.cashBack);
+  $('d-back').style.color = sim.cashBack < 0 ? 'var(--warn)' : 'var(--teal)';
+  $('d-left').textContent = fmtK(p.left);
+  $('d-left').style.color = p.left <= 5000 ? 'var(--teal)' : p.left >= 15000 ? 'var(--warn)' : 'var(--sky)';
+
+  if (sim.targetMonth){
+    const yrs = sim.targetMonth/12;
+    $('r-time').textContent = yrs.toFixed(1);
+    $('r-time-foot').textContent = 'years from today';
+    $('r-eqfin').textContent = fmtK(Math.round(equityAt(sim, sim.targetMonth).equity));
+    $('r-cf').textContent = fmtK(50 * p.cf);
+  } else {
+    $('r-time').textContent = '30+';
+    $('r-time-foot').textContent = 'tighten your deals';
+    $('r-eqfin').textContent = '--'; $('r-cf').textContent = '--';
+  }
+  $('r-payout').textContent = fmtK(Math.round(matureEquity(20)));
+
+  drawChart(sim);
+
+  let rows='';
+  for (const yr of [5,10,15]){
+    const e = equityAt(sim, yr*12);
+    rows += `<tr><td>Year ${yr}</td><td>${e.doors}</td><td>${fmtK(Math.round(e.equity))}</td><td>${fmtK(Math.round(e.cf))}</td></tr>`;
+  }
+  rows += `<tr class="peak"><td>20-yr hold</td><td>50</td><td>${fmtK(Math.round(matureEquity(20)))}</td><td>${fmtK(50*p.cf)}</td></tr>`;
+  $('miles-body').innerHTML = rows;
+}
+
+document.querySelectorAll('input[type=range]').forEach(el=>el.addEventListener('input',update));
+update();
+</script>
+</body>
+</html>
