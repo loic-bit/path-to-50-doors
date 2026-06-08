@@ -1,4 +1,4 @@
-FROM nginx:alpine
-COPY index.html /usr/share/nginx/html/index.html
-# Railway injects $PORT — replace nginx default 80 with it at startup
-CMD sh -c "sed -i 's/listen  *80/listen '\"$PORT\"'/' /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
+FROM python:3.12-alpine
+WORKDIR /app
+COPY index.html .
+CMD python3 -m http.server ${PORT:-8080}
