@@ -135,12 +135,28 @@
   .cta-h{font-family:"Fraunces",serif;font-weight:500;font-size:clamp(30px,5vw,52px);line-height:1.02;letter-spacing:-.02em}
   .cta-h em{color:var(--sky);font-style:italic}
   .cta-p{color:var(--muted);max-width:580px;margin:18px auto 0;font-size:15.5px}
-  .cta-btn{display:inline-block;margin-top:30px;padding:17px 40px;border-radius:999px;
-    background:linear-gradient(180deg,var(--sky),var(--navy));color:#04111f;text-decoration:none;
-    font-family:"DM Sans",sans-serif;font-weight:700;font-size:16px;
-    box-shadow:0 14px 34px -10px rgba(92,184,239,.6);transition:transform .15s,box-shadow .15s}
-  .cta-btn:hover{transform:translateY(-2px);box-shadow:0 20px 44px -10px rgba(92,184,239,.8)}
   .cta-note{font-family:"Space Mono",monospace;font-size:12px;color:var(--dim);margin-top:16px}
+
+  /* Kit form overrides — force it to match the dark navy theme */
+  .formkit-form{background:transparent !important;border:none !important;box-shadow:none !important;padding:0 !important;margin:30px auto 0 !important;max-width:480px !important}
+  .formkit-form *{box-sizing:border-box}
+  .formkit-form .formkit-fields{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+  .formkit-form .formkit-field{flex:1 1 260px}
+  .formkit-form input.formkit-input{
+    width:100%;padding:15px 20px;border-radius:999px;
+    background:var(--panel-2);border:1px solid var(--line);
+    color:var(--ink);font-family:"DM Sans",sans-serif;font-size:15px;outline:none;
+    transition:border-color .15s}
+  .formkit-form input.formkit-input::placeholder{color:var(--dim)}
+  .formkit-form input.formkit-input:focus{border-color:var(--sky)}
+  .formkit-form button.formkit-submit{
+    padding:15px 32px;border-radius:999px;border:none;cursor:pointer;
+    background:linear-gradient(180deg,var(--sky),var(--navy));color:#04111f;
+    font-family:"DM Sans",sans-serif;font-weight:700;font-size:15px;white-space:nowrap;
+    box-shadow:0 14px 34px -10px rgba(92,184,239,.6);transition:transform .15s,box-shadow .15s}
+  .formkit-form button.formkit-submit:hover{transform:translateY(-2px);box-shadow:0 20px 44px -10px rgba(92,184,239,.8)}
+  .formkit-form .formkit-guarantee,.formkit-form .formkit-powered-by-convertkit-container{display:none !important}
+  @media(max-width:520px){.formkit-form .formkit-fields{flex-direction:column}.formkit-form .formkit-field{flex:none}}
 
   footer{margin-top:30px;color:var(--dim);font-family:"Space Mono",monospace;font-size:11px;text-align:center;line-height:1.7}
 
@@ -284,8 +300,7 @@
     <div class="cta-eyebrow">You have seen the math</div>
     <h2 class="cta-h">Now let us build <em>your</em> plan.</h2>
     <p class="cta-p">The numbers above are the strategy in its simplest form. The real path, in your market, with real deals, is what our team maps with you on a free roadmap session. You walk away knowing your exact next move.</p>
-    <!-- TODO: confirm /emails is your booking URL — swap it if you have a dedicated call-booking page (e.g. Calendly) -->
-    <a class="cta-btn" href="https://investingsection8.com/emails" target="_blank" rel="noopener">Book your free roadmap session &rarr;</a>
+    <script async data-uid="cc4fab3ec6" src="https://joseph-khateri.kit.com/cc4fab3ec6/index.js"></script>
     <p class="cta-note">No pressure. Just a clear plan you can act on this month.</p>
   </section>
 
@@ -434,6 +449,11 @@ function update(){
 
 document.querySelectorAll('input[type=range]').forEach(el=>el.addEventListener('input',update));
 update();
+
+// Redirect to thank-you page after Kit form submission
+document.addEventListener('convertkit:subscriber_added', function() {
+  window.location.href = 'https://section8-hud-guide.lovable.app/thank-you?source=path-to-50-doors';
+});
 </script>
 </body>
 </html>
