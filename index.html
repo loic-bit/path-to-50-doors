@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Path to 50 Doors | InvestingSection8</title>
+<title>The Path to 50 Doors | Investing Section 8</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -172,7 +172,7 @@
 <body>
 <div class="wrap">
   <div class="brand">
-    <div class="mark"><span class="dot"></span>InvestingSection8</div>
+    <div class="mark"><span class="dot"></span>Investing Section 8</div>
     <div class="tag">with Joseph Khateri</div>
   </div>
 
@@ -279,7 +279,7 @@
         </div>
       </div>
       <div class="assume">
-        <b>Fixed assumptions, so you can focus on what matters:</b> average door worth ~$130k after repair &middot; refinance at 75% of value &middot; about 6 months per deal cycle &middot; up to 4 deals running at once &middot; 3% yearly appreciation &middot; 30-year loan at 7.5%.<br><br>
+        <b>Fixed assumptions, so you can focus on what matters:</b> average door worth ~$130k after repair &middot; refinance at 75% of value &middot; about 5 months per deal cycle &middot; up to 4 deals running at once &middot; 2% yearly appreciation &middot; 30-year loan at 7.5%.<br><br>
         <b style="color:var(--sky-soft)">Note:</b> In practice, most investors can only manage 4 active deals at once. That limit is already built into this model.
       </div>
 
@@ -305,7 +305,7 @@
   </section>
 
   <footer>
-    InvestingSection8 with Joseph Khateri &middot; Model recycles recovered cash and rent into the next deal.<br>
+    Investing Section 8 with Joseph Khateri &middot; Model recycles recovered cash and rent into the next deal.<br>
     "20-yr hold" equity is gross, before ~7% selling costs and depreciation recapture / capital gains tax. A 1031 exchange can defer those.
   </footer>
 </div>
@@ -320,7 +320,7 @@ const fmtK = n => {
 // fixed assumptions
 const VALUE = 130000, LTV = 0.75, RATE = 0.075;
 const LOAN = VALUE * LTV;        // 97,500 per door
-const CYCLE = 6, PARALLEL = 4, APPR = 0.03, TARGET = 50, CAP = 360;
+const CYCLE = 5, PARALLEL = 4, APPR = 0.02, TARGET = 50, CAP = 360;
 
 function amort(L, annual, m){
   if (m <= 0) return L; const i = annual/12, n = 360;
